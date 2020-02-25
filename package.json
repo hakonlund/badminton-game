@@ -1,0 +1,25 @@
+{
+  "name": "badminton-game",
+  "version": "1.0.0",
+  "description": "The amazing game of badminton",
+  "private": true,
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hakonlund/badminton-game.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hakonlund/badminton-game/issues"
+  },
+  "homepage": "https://github.com/hakonlund/badminton-game#readme",
+  "devDependencies": {
+    "webpack": "^4.41.6",
+    "webpack-cli": "^3.3.11"
+  }
+}
