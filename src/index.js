@@ -5,10 +5,16 @@ var config = {
   type: Phaser.AUTO,
   width: 800,
   height: 600,
+  backgroundColor: "#c2fffe",
   physics: {
-    default: "arcade",
-    arcade: {
-      gravity: { y: 200 }
+    default: "matter",
+    matter: {
+      gravity: {
+        y: 0.2
+      },
+      debug: {
+        showBounds: false
+      }
     }
   },
   scene: [Scene]
