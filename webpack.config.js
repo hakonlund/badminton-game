@@ -5,7 +5,7 @@ module.exports = {
   entry: './src/index.js',
   plugins: [
     new HtmlWebpackPlugin({
-      title: 'Output Management',
+      title: 'The amazing game of BADMINTON',
     }),
   ],
   devtool: 'inline-source-map',
