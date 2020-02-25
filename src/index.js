@@ -1,9 +1,15 @@
-function component() {
-  const element = document.createElement('div');
+import Phaser from 'phaser'
 
-  element.innerHTML = "Hello"
+var config = {
+  type: Phaser.AUTO,
+  width: 800,
+  height: 600,
+  physics: {
+    default: 'arcade',
+    arcade: {
+      gravity: { y: 200 }
+    }
+  }
+};
 
-  return element;
-}
-
-document.body.appendChild(component());
+export const game = new Phaser.Game(config);
