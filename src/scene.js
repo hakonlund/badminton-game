@@ -5,6 +5,8 @@ import figur1 from "./graphics/figur1.png";
 import figur2 from "./graphics/figur2.png";
 import badmintonBall from "./graphics/badmintonBall.png";
 
+import Phaser from "phaser";
+
 export default class Scene extends Phaser.Scene {
   constructor() {
     super("Scene");
@@ -31,5 +33,24 @@ export default class Scene extends Phaser.Scene {
     this.figur1 = this.matter.add.sprite(170, 500, "figur1");
     this.figur2 = this.matter.add.sprite(630, 500, "figur2");
     this.ball = this.matter.add.sprite(200, 50, "ball");
+
+    this.dKey = this.input.keyboard.addKey('D');
+    this.aKey = this.input.keyboard.addKey('A');
+    this.leftKey = this.input.keyboard.addKey('LEFT');
+    this.rightKey = this.input.keyboard.addKey('RIGHT');
+  }
+  update() {
+    if (this.dKey.isDown) {
+      this.figur1.x += 2;
+    }
+    if (this.aKey.isDown) {
+      this.figur1.x -= 2;
+    }
+    if (this.leftKey.isDown) {
+      this.figur2.x -= 2;
+    }
+    if (this.rightKey.isDown) {
+      this.figur2.x += 2;
+    }
   }
 }
