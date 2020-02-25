@@ -7,10 +7,20 @@ import badmintonBall from "./graphics/badmintonBall.png";
 
 import Phaser from "phaser";
 
+const figurStates = {
+  still: 0,
+  jumping: 1,
+  moving: 2
+}
+
+let figur1State = figurStates.moving;
+let figur2State = figurStates.moving;
+
 export default class Scene extends Phaser.Scene {
   constructor() {
     super("Scene");
   }
+
   preload() {
     this.load.image("bakke", bakke);
     this.load.image("solen", solen);
@@ -30,27 +40,42 @@ export default class Scene extends Phaser.Scene {
     this.nett = this.matter.add.sprite(400, 350, "nett", null, {
       isStatic: true
     });
-    this.figur1 = this.matter.add.sprite(170, 500, "figur1");
+    this.figur1 = this.matter.add.sprite(170, 500, "figur1", null, {
+      onCollideCallback: () => {
+        figur1State = figurStates.moving;
+      }
+    });
     this.figur2 = this.matter.add.sprite(630, 500, "figur2");
-    this.ball = this.matter.add.sprite(200, 50, "ball");
+    this.ball = this.matter.add.sprite(200, 50, "ball").setBounce(0.8);
 
     this.dKey = this.input.keyboard.addKey('D');
     this.aKey = this.input.keyboard.addKey('A');
+    this.wKey = this.input.keyboard.addKey('W');
+
+
     this.leftKey = this.input.keyboard.addKey('LEFT');
     this.rightKey = this.input.keyboard.addKey('RIGHT');
+    this.upKey = this.input.keyboard.addKey('UP');
   }
   update() {
-    if (this.dKey.isDown) {
-      this.figur1.x += 2;
-    }
-    if (this.aKey.isDown) {
-      this.figur1.x -= 2;
-    }
-    if (this.leftKey.isDown) {
-      this.figur2.x -= 2;
-    }
-    if (this.rightKey.isDown) {
-      this.figur2.x += 2;
+    switch (figur1State) {
+      case figurStates.moving:
+        if (this.dKey.isDown) {
+          this.figur1.x += 2;
+          figur1State = figurStates.moving;
+        }
+        else if (this.aKey.isDown) {
+          this.figur1.x -= 2;
+          figur1State = figurStates.moving;
+        }
+        else if (this.wKey.isDown) {
+          this.figur1.setVelocityY(-4);
+          figur1State = figurStates.jumping;
+        }
+        break;
+
+      case figurStates.jumping:
+        break;
     }
   }
 }
