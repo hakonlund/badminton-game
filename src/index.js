@@ -12,9 +12,7 @@ var config = {
       gravity: {
         y: 0.2
       },
-      debug: {
-        showBounds: false
-      }
+      debug: false
     }
   },
   scene: [Scene]
