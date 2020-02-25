@@ -41,12 +41,13 @@ export default class Scene extends Phaser.Scene {
       isStatic: true
     });
     this.figur1 = this.matter.add.sprite(170, 500, "figur1", null, {
+      density: 1,
       onCollideCallback: () => {
         figur1State = figurStates.moving;
       }
     });
     this.figur2 = this.matter.add.sprite(630, 500, "figur2");
-    this.ball = this.matter.add.sprite(200, 50, "ball").setBounce(0.8);
+    this.ball = this.matter.add.sprite(200, 50, "ball").setBounce(1);
 
     this.dKey = this.input.keyboard.addKey('D');
     this.aKey = this.input.keyboard.addKey('A');
@@ -61,15 +62,15 @@ export default class Scene extends Phaser.Scene {
     switch (figur1State) {
       case figurStates.moving:
         if (this.dKey.isDown) {
-          this.figur1.x += 2;
+          this.figur1.setVelocityX(2);
           figur1State = figurStates.moving;
         }
         else if (this.aKey.isDown) {
-          this.figur1.x -= 2;
+          this.figur1.setVelocityX(-2);
           figur1State = figurStates.moving;
         }
         else if (this.wKey.isDown) {
-          this.figur1.setVelocityY(-4);
+          this.figur1.setVelocityY(-5);
           figur1State = figurStates.jumping;
         }
         break;
